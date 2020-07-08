@@ -1,22 +1,28 @@
 package com.udemy.spring.petclinic.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Shelupets Denys on 07.07.2020.
  */
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "type")
 public class PetType extends BaseEntity {
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Pet> petList;
     @Column(name = "name")
     private String name;
 
+    public PetType(Long id, String name) {
+        super(id);
+        this.name = name;
+    }
 }
+
