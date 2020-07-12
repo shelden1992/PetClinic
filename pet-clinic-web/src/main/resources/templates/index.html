@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
     <div th:include="fragments/headerFragment.html"></div>
     <title>leopet || Home</title>
@@ -20,10 +21,10 @@
         <div class="row align-content-center">
             <div class="col-lg-7 col-xl-6">
                 <div class="banner_text">
-                    <h5>Welcome to Leopet</h5>
+                    <h5 th:text="#{home.welcome.to.clinic}"></h5>
                     <h1>Give your pet
                         Best Care</h1>
-                    <a href="#" class="btn_1">OUR SERVIECS</a>
+                    <a href="#" class="btn_1">">OUR SERVIECS</a>
                 </div>
             </div>
         </div>

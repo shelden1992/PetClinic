@@ -27,6 +27,7 @@ public class StaticResourceController {
     public String teamPage() {
         return "blog";
     }
+
     @GetMapping({"/services"})
     public String servicesPage() {
         return "services";
