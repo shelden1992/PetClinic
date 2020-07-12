@@ -22,8 +22,8 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Pet> pets = new HashSet<>();
 
-    public Owner(Long id, String firstName, String lastName, String address, String telephone, Set<Pet> pets) {
-        super(id, firstName, lastName);
+    public Owner(Long id, String firstName, String lastName, String email, String password, String address, String telephone, Set<Pet> pets) {
+        super(id, firstName, lastName, email, password);
         this.address = address;
         this.telephone = telephone;
         if (pets != null) {
