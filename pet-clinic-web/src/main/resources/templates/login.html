@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <div th:include="fragments/headerFragment.html"></div>
+</head>
+<body>
+<header class="header_area">
+    <div th:include="fragments/headerPartStartFragment.html"></div>
+    <!--::menu bar::-->
+    <div th:include="fragments/menuFragment.html"></div>
+</header>
+<section class="banner_part">
+    <div class="container">
+        <div class="row align-content-center">
+            <div class="col-lg-7 col-xl-6">
+                <div class="text-xl-left" id="sign-in">
+                    <div class="container">
+                        <div class="row site-hero-inner justify-content-center align-items-center">
+                            <div class="col-md-10 text-center" data-aos="fade-up">
+
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12" data-aos="fade-up" data-aos-delay="100">
+
+                                                    <form th:action="@{/processing-login}" method="post"
+                                                          class="bg-white p-4" th:object="${loginForm}">
+                                                        <div class="row mb-4">
+                                                            <div class="col-12"><h2> signIn</h2>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+                                                            <div class="col-md-12 form-group">
+                                                                <input class="text-black font-weight-bold"
+                                                                       th:field="*{email}">Email</input>
+                                                            </div>
+                                                            <div th:if="${#fields.hasErrors('email')}" style="margin-bottom: 25px"
+                                                                 class="text-danger">
+                                                                <ul>
+                                                                    <li th:each="err : ${#fields.errors('email')}"
+                                                                        th:text="'Email ' + ${err}"></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-12 form-group">
+                                                                <input class="text-black font-weight-bold" th:field="*{password}">
+                                                                Password
+                                                                </input>
+                                                                <div th:if="${#fields.hasErrors('password')}"
+                                                                     style="margin-bottom: 25px" class="text-danger">
+                                                                    <ul>
+                                                                        <li th:each="err : ${#fields.errors('password')}"
+                                                                            th:text="'Password ' + ${err}"></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="d-flex justify-content-between align-content-end w-100 col-auto">
+                                                                    <div class="text-left">
+                                                                        <p>
+                                                                            HaveNotAccount
+                                                                        </p>
+                                                                        <a class="nav-link btn btn-primary"
+                                                                           href="registration-form">
+                                                                            Register
+                                                                        </a>
+                                                                    </div>
+                                                                    <input type="submit"
+                                                                           value="signIn"
+                                                                           style="right: auto; align-self: flex-end;"
+                                                                           class="btn btn-primary">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:include="fragments/endFragment.html"></div>
+<div th:include="fragments/scriptFragment.html"></div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.udemy.spring.petclinic.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "work_processing")
+@AllArgsConstructor
+@NoArgsConstructor
 public class WorkProcessing extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "vet_id")
