@@ -26,4 +26,7 @@ public class Speciality extends BaseEntity {
         this.description = description;
 
     }
+    public boolean isAdmin(){
+        return "ADMIN".equals(description);
+    }
 }

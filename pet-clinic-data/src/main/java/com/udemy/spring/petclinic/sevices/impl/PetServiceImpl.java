@@ -28,7 +28,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet findById(Long id) {
-        return petRepository.findById(id).get();
+        return petRepository.findById(id).orElse(null);
     }
 
     @Override

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+import static java.util.Objects.nonNull;
+
 
 /**
  * Created by Shelupets Denys on 09.07.2020.
@@ -18,7 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Service
 public class VetServiceImpl implements VetService {
-    private VetRepository repository;
+    private final VetRepository repository;
 
     @Override
     public Set<Vet> findAll() {
@@ -29,7 +31,7 @@ public class VetServiceImpl implements VetService {
 
     @Override
     public Vet findById(Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -47,5 +49,14 @@ public class VetServiceImpl implements VetService {
     public void deleteById(Long id) {
         repository.deleteById(id);
 
+    }
+
+    @Override
+    public Vet findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    public boolean emailExist(String email) {
+        return nonNull(findByEmail(email));
     }
 }

@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.util.Objects.nonNull;
+
 /**
  * Created by Shelupets Denys on 09.07.2020.
  */
@@ -36,6 +38,11 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    public Owner findByEmail(String email) {
+        return ownerRepository.findByEmail(email);
+    }
+
+    @Override
     public Set<Owner> findAll() {
         HashSet<Owner> owners = new HashSet<>();
         ownerRepository.findAll().forEach(owners::add);
@@ -44,7 +51,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner findById(Long id) {
-        return ownerRepository.findById(id).get();
+        return ownerRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -61,5 +68,10 @@ public class OwnerServiceImpl implements OwnerService {
     public void deleteById(Long id) {
         ownerRepository.deleteById(id);
 
+    }
+
+    @Override
+    public boolean emailExist(String email) {
+        return nonNull(findByEmail(email));
     }
 }

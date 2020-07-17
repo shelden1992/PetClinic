@@ -22,8 +22,8 @@ public class Person extends BaseEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "emeil")
-    private String emeil;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
 
@@ -31,7 +31,7 @@ public class Person extends BaseEntity {
         super(id);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emeil = email;
+        this.email = email;
         this.password = password;
     }
 }

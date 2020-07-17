@@ -12,4 +12,8 @@ public interface OwnerService extends CrudService<Owner, Long> {
     Owner findByLastName(String lastName);
 
     List<Owner> findAllByLastNameLike(String lastName);
+
+    Owner findByEmail(String email);
+
+    boolean emailExist(String email);
 }

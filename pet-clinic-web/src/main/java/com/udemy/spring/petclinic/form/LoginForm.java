@@ -1,10 +1,12 @@
 package com.udemy.spring.petclinic.form;
 
+import com.udemy.spring.petclinic.model.UserRole;
 import com.udemy.spring.petclinic.validation.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,6 +18,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class LoginForm {
     @ValidEmail
     @NotNull(message = "error.cant.be.empty")
@@ -24,6 +27,7 @@ public class LoginForm {
     @NotNull
     @Size(min = 5, message = "error.cant.be.empty")
     private String password;
+    private UserRole userRole;
 
 
 }

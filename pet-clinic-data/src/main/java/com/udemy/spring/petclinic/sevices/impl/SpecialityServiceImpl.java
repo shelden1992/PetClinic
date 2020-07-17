@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Service
 public class SpecialityServiceImpl implements SpecialityService {
-    private SpecialityRepository repository;
+    private final SpecialityRepository repository;
 
     @Override
     public Set<Speciality> findAll() {
@@ -28,7 +28,7 @@ public class SpecialityServiceImpl implements SpecialityService {
 
     @Override
     public Speciality findById(Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override

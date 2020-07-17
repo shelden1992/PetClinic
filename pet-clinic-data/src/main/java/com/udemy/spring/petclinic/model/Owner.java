@@ -1,7 +1,6 @@
 package com.udemy.spring.petclinic.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +11,9 @@ import java.util.Set;
  */
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "owner")
 public class Owner extends Person {
@@ -29,6 +31,12 @@ public class Owner extends Person {
         if (pets != null) {
             this.pets = pets;
         }
+    }
+
+    public Owner(String firstName, String lastName, String email, String password, String address, String telephone) {
+        super(null, firstName, lastName, email, password);
+        this.address = address;
+        this.telephone = telephone;
     }
 
     public Pet getPet(String name) {

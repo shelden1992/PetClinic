@@ -1,6 +1,9 @@
 package com.udemy.spring.petclinic.controller;
 
 import com.udemy.spring.petclinic.form.LoginForm;
+import com.udemy.spring.petclinic.model.Owner;
+import com.udemy.spring.petclinic.sevices.interfaces.OwnerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,12 @@ import javax.validation.Valid;
  */
 @Controller
 public class LoginController {
+    private OwnerService ownerService;
+
+    @Autowired
+    public LoginController(OwnerService ownerService) {
+        this.ownerService = ownerService;
+    }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -25,18 +34,25 @@ public class LoginController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @PostMapping(value = "/processing-login")
+    @PostMapping(value = "/login-confirm")
     public String processingLogin(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult error, Model model) {
         if (error.hasErrors()) {
             return "login";
         }
-        return "redirect:";
 
+        return "redirect:/";
     }
 
-    @GetMapping(value = "/login-form")
+    @GetMapping({"/sign-in", "/login-confirm"})
     public String loginForm(Model model) {
         model.addAttribute("loginForm", new LoginForm());
         return "login";
     }
+
+    @GetMapping("/sign-out")
+    public String logout() {
+        return "redirect:/";
+
+    }
+
 }
