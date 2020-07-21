@@ -2,6 +2,7 @@ package com.udemy.spring.petclinic.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
  * Created by Shelupets Denys on 12.07.2020.
  */
 @Entity
+@ToString
 @Table(name = "work_processing")
 @AllArgsConstructor
 @NoArgsConstructor

@@ -43,7 +43,7 @@ public class OwnerDetailsService implements UserDetailsService {
 
     private Set<SimpleGrantedAuthority> getSimpleGrantedAuthorities() {
         Set<SimpleGrantedAuthority> userAuthority = new HashSet<>();
-        userAuthority.add(new SimpleGrantedAuthority(UserRole.OWNER.name()));
+        userAuthority.add(new SimpleGrantedAuthority(UserRole.OWNER.getName()));
         return userAuthority;
     }
 

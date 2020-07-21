@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.nonNull;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Shelupets Denys on 09.07.2020.
@@ -34,7 +35,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public List<Owner> findAllByLastNameLike(String lastName) {
-        return ownerRepository.findAllByLastNameLike(lastName);
+        return ownerRepository.findAllByLastNameLike(lastName).stream().collect(toList());
     }
 
     @Override

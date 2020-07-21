@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html th:fragment="layout (template)" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!--<th:block th:fragment="header">-->
     <!-- Required meta tags -->
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="sub_header" layout:fragment="subHeader">
+<div class="sub_header">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-4 col-md-4 col-xl-4">
@@ -36,30 +36,32 @@
                 </div>
             </div>
 
-            <div class="col-4 col-md-4 col-xl-4">
-                <div class="pull-right">
-                    <div th:if="${#httpServletRequest.remoteUser != null}">
-                        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
-
-                        <a th:href="@{/sign-out}" type="button"
-                           class="btn_1 d-none d-md-inline-block nav-link">Sign
-                            Out</a>
-                    </div>
-                    <div th:if="${#httpServletRequest.remoteUser == null}">
-                        <a th:href="@{/sign-in}" type="button"
-                           class="btn_1 d-none d-md-inline-block nav-link">Sign
-                            In
-                        </a>
-                    </div>
+            <div class="col-3 col-md-3 col-xl-3">
+                <div class="sub_header_social_icon">
+                    <a href="#"><i class="flaticon-phone"></i>+380-50-103-1003</a>
                 </div>
             </div>
 
-
-            <div class="col-4 col-md-4 col-xl-4">
-                <div class="sub_header_social_icon float-lg-right">
-                    <a href="#"><i class="flaticon-phone"></i>+380-50-103-1003</a>
+            <div class="col-auto">
+                <div th:if="${#httpServletRequest.remoteUser != null}">
+                    <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
                 </div>
-                <div class="sub_header_social_icon float-lg-right">
+            </div>
+            <div class=" col-auto">
+                <div th:if="${#httpServletRequest.remoteUser != null}">
+                    <a th:href="@{/sign-out}" type="button"
+                       class="btn_1 d-none d-md-inline-block nav-link">Sign
+                        Out</a>
+                </div>
+            </div>
+            <div th:if="${#httpServletRequest.remoteUser == null}">
+                <a th:href="@{/sign-in}" type="button"
+                   class="btn_1 d-none d-md-inline-block nav-link">Sign
+                    In
+                </a>
+            </div>
+            <div class="col-1 col-md-1 col-xl-1">
+                <div class=" float-lg-right">
                     <a href="?lang=uk" class="text-uppercase">ua</a>
                     <a href="?lang=ru" class="text-uppercase">ru</a>
                 </div>
@@ -67,7 +69,7 @@
         </div>
     </div>
 </div>
-<div class="main_menu" layout:fragment="mainMenu">
+<div class="main_menu">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -80,41 +82,48 @@
 
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a th:href="@{/about}" class="nav-link">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/services}" class="nav-link">services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/gallery}" class="nav-link">gallery</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Pages
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" th:href="@{elements.html}">Elements</a>
-                                    <a class="dropdown-item" th:href="@{single-blog.html}">Single blog</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/blog}" class="nav-link">blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a th:href="@{/contact}" class="nav-link">Contact</a>
-                            </li>
-                            <!--                            <li class="nav-item dropdown">-->
-                            <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button"-->
-                            <!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                            <!--                                    Pages-->
-                            <!--                                </a>-->
-                            <!--                                <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">-->
-                            <!--                                    <a class="dropdown-item" th:href="@{admin/owners.html}">Owners</a>-->
-                            <!--                                    <a class="dropdown-item" th:href="@{admin/pets.html}">Pets and Visit</a>-->
-                            <!--                                </div>-->
-                            <!--                            </li>-->
+                            <div th:if="!${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                                <li class="nav-item">
+                                    <a th:href="@{/about}" class="nav-link">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/services}" class="nav-link">services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/gallery}" class="nav-link">gallery</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Pages
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" th:href="@{elements.html}">Elements</a>
+                                        <a class="dropdown-item" th:href="@{single-blog.html}">Single blog</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/blog}" class="nav-link">blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/contact}" class="nav-link">Contact</a>
+                                </li>
+                            </div>
+
+                            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                                <li class="nav-item">
+                                    <a th:href="@{/owners}" class="nav-link">Owners</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/owners/find}" class="nav-link">Find Owners</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/pets}" class="nav-link">Pets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/pets/find}" class="nav-link">Find Pets</a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
                 </nav>
@@ -122,15 +131,16 @@
         </div>
     </div>
 </div>
+
 <!-- banner part start-->
-<section layout:fragment="section1"/>
-<section layout:fragment="section2"/>
-<section layout:fragment="section3"/>
-<section layout:fragment="section4"/>
-<section layout:fragment="section5"/>
-<section layout:fragment="section6"/>
-<section layout:fragment="section7"/>
-<section layout:fragment="section8"/>
+<div class="container-fluid">
+
+    <section th:include="${template}"/>
+
+    <br/>
+    <br/>
+</div>
+
 <!-- banner part start-->
 
 <footer class="footer_area padding_top">
@@ -193,7 +203,8 @@
                     <p class="footer-text">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by
+                        All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i>
+                        by
                         <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>

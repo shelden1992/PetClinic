@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+<html xmlns:th="http://www.thymeleaf.org"
       th:with="lang=${#locale.language}" th:lang="${lang}"
-      layout:decorate="~{fragments/layout}">
+      th:replace="~{fragments/layout :: layout (~{::body})}">
 <head>
     <meta charset="UTF-8"/>
     <title>Login</title>
 </head>
 <body>
-<section class="banner_part" layout:fragment="section1">
+<section class="banner_part">
     <div class="container">
         <div class="col-lg-4">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
-                        <form th:action="@{/login-confirm}" method="post"
-                              class="bg-white p-4" th:object="${loginForm}">
-                            <div class="row mb-4">
-                                <div class="col-12"><h2> Sign In</h2>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
+                        <div class="col-12 text-center">
+                            <form th:action="@{/login-confirm}" method="post"
+                                  class="bg-white p-4" th:object="${loginForm}">
+                                <h2> Sign In</h2>
+                                <br/>
                                 <div class="col-md-12 form-group">
+                                    <label class="text-black font-weight-bold" for="email">
+                                        Email
+                                    </label>
                                     <input class="text-black font-weight-bold"
-                                           th:field="*{email}"> Email</input>
+                                           th:field="*{email}"
+                                           type="email"
+                                           id="email"/>
 
                                     <div th:if="${#fields.hasErrors('email')}"
                                          style="margin-bottom: 25px"
@@ -35,38 +36,35 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <input class="text-black font-weight-bold"
-                                           th:field="*{password}"> Password
-                                    </input>
-                                    <div th:if="${#fields.hasErrors('password')}"
-                                         style="margin-bottom: 25px" class="text-danger">
-                                        <ul>
-                                            <li th:each="err : ${#fields.errors('password')}"
-                                                th:text="'Password ' + ${err}"></li>
-                                        </ul>
-                                    </div>
+
+                                <label class="text-black font-weight-bold" for="password">
+                                    Password
+                                </label>
+                                <input class="text-black font-weight-bold"
+                                       th:field="*{password}" id="password"/>
+                                <div th:if="${#fields.hasErrors('password')}"
+                                     style="margin-bottom: 25px" class="text-danger">
+                                    <ul>
+                                        <li th:each="err : ${#fields.errors('password')}"
+                                            th:text="'Password ' + ${err}"></li>
+                                    </ul>
                                 </div>
                                 <div th:unless="!${#request.getParameter('error')}"
                                      style="margin-bottom: 25px"
                                      class="text-danger">
                                     Password or email not valid
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 form-group"></div>
-                                    <div class="col-md-12 form-group">
-                                        <a class="btn_1 d-none d-md-inline-block nav-link"
-                                           type="button"
-                                           th:href="@{/new}">
-                                            New Account
-                                        </a>
-                                        <input class="btn_1 d-none d-md-inline-block nav-link pull-right" type="submit"
-                                               value="Sign In"
-                                               style="right: auto; align-self: flex-end;"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <a class="nav-link  pull-left" type="text" th:href="@{/owners/new}">
+                                    New Account
+                                </a>
+                                <input class="btn_1 d-none d-md-inline-block nav-link pull-right" type="submit"
+                                       value="Sign In"
+                                       style="right: auto; align-self: flex-end;"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

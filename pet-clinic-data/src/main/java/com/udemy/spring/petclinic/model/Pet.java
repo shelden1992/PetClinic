@@ -13,6 +13,7 @@ import java.util.Set;
  */
 @Getter
 @Setter
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

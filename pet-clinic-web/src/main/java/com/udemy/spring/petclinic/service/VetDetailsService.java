@@ -42,9 +42,10 @@ public class VetDetailsService implements UserDetailsService {
     private Set<SimpleGrantedAuthority> getSimpleGrantedAuthorities(Vet vet) {
         Set<SimpleGrantedAuthority> userAuthority = new HashSet<>();
         if (vet.getSpecialities().stream().anyMatch(Speciality::isAdmin)) {
-            userAuthority.add(new SimpleGrantedAuthority(UserRole.ADMIN.name()));
+            userAuthority.add(new SimpleGrantedAuthority(UserRole.ADMIN.getName()));
+            return userAuthority;
         }
-        userAuthority.add(new SimpleGrantedAuthority(UserRole.VET.name()));
+        userAuthority.add(new SimpleGrantedAuthority(UserRole.VET.getName()));
         return userAuthority;
     }
 

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+<html xmlns:th="http://www.thymeleaf.org"
       th:with="lang=${#locale.language}" th:lang="${lang}"
-      layout:decorate="~{fragments/layout}">
+      th:replace="~{/fragments/layout :: layout (~{::body})}">
+<!--      layout:decorate="~{fragments/layout}">-->
 <head>
     <meta charset="UTF-8"/>
-    <title>Login</title>
+    <title>Registration</title>
 </head>
 <body>
-<section class="banner_part" layout:fragment="section1">
+<section class="banner_part">
     <div class="container">
         <div class="col-lg-4">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <form th:action="@{/new}" method="post" id="add-owner-form" class="bg-white p-4"
+                            <form th:action="@{/owners/new}" method="post" id="add-owner-form" class="bg-white p-4"
                                   th:object="${owner}">
-                                <div class="form-group">
-                                    <h2> Registration</h2>
-                                </div>
-
+                                <h2 th:with="text=${owner['new']} ? 'Registration' : 'Update Owner'"
+                                    type="text"
+                                    th:text="${text}">Registration</h2>
+                                <br/>
                                 <div class="form-group has-feedback">
+                                    <input type="hidden" name="id" th:value="*{id}"/>
+
                                     <label class="text-black font-weight-bold" for="firstName">
                                         First Name
                                     </label>
@@ -32,7 +35,7 @@
                                          class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('firstName')}"
-                                                th:text="'First name ' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                     <label class="text-black font-weight-bold" for="lastName">
@@ -46,7 +49,7 @@
                                          class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('lastName')}"
-                                                th:text="'Last name ' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                     <label class="text-black font-weight-bold" for="address">
@@ -60,7 +63,7 @@
                                          class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('address')}"
-                                                th:text="'Address ' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                     <label class="text-black font-weight-bold" for="telephone">
@@ -76,7 +79,7 @@
                                          class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('telephone')}"
-                                                th:text="'Telephone' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                     <label class="text-black font-weight-bold" for="email">
@@ -84,14 +87,14 @@
                                     </label>
                                     <input class=" form-control" type="text" required="required"
                                            id="email"
-                                           th:field="*{email}"/>
+                                           th:field="*{email}" th:type="email">
 
                                     <div th:if="${#fields.hasErrors('email')}"
                                          style="margin-bottom: 25px"
                                          class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('email')}"
-                                                th:text="'Email ' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                     <label class="text-black font-weight-bold" for="password">
@@ -106,13 +109,16 @@
                                          style="margin-bottom: 25px" class="text-danger">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('password')}"
-                                                th:text="'Password ' + ${err}"></li>
+                                                th:text=" ${err}"></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <input class="btn_1 d-none d-md-inline-block nav-link" type="submit"
-                                           value="Registration"/>
+                                    <button
+                                            th:with="text=${owner['new']} ? 'Registration' : 'Update Owner'"
+                                            class="btn_1 d-none d-md-inline-block nav-link" type="submit"
+                                            th:text="${text}">Registration
+                                    </button>
                                 </div>
                             </form>
                         </div>
