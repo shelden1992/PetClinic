@@ -14,9 +14,9 @@ import java.util.Collection;
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
     Owner findByLastName(String lastName);
 
-    @Query("select distinct owner from Owner owner left join fetch owner.pets where owner.lastName like :lastName%")
-    @Transactional(readOnly = true)
-    Collection<Owner> findAllByLastNameLike(@Param("lastName") String lastName);
+//    @Query("select distinct owner from Owner owner left join fetch owner.pets where owner.lastName like :lastName%")
+//    @Transactional(readOnly = true)
+    Collection<Owner> findAllByLastNameLike(/*@Param("lastName")*/ String lastName);
 
     Owner findByEmail(String email);
 }
