@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
 
 /**
  * Created by Shelupets Denys on 08.07.2020.
@@ -27,6 +26,9 @@ public class Visit extends BaseEntity {
     private Pet pet;
     @Column(name = "description")
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "vet_id")
+    private Vet vet;
 
 
 }

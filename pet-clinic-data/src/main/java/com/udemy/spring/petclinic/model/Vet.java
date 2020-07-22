@@ -24,6 +24,8 @@ public class Vet extends Person {
     private Set<Speciality> specialities = new HashSet<>();
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "vet")
     private Set<WorkProcessing> workProcessing = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "vet")
+    private Set<Visit> visits;
 
 
 }
