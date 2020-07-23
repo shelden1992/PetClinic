@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/sign-in")
                 .loginProcessingUrl("/login-confirm")
                 .defaultSuccessUrl("/", false)
                 .usernameParameter("email")
@@ -72,4 +72,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/js/**", "/img/**",
                         "/fonts/**", "/scss/**", "/sass/**");
     }
+
 }

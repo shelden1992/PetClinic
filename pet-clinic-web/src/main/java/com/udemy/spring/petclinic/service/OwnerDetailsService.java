@@ -1,5 +1,6 @@
 package com.udemy.spring.petclinic.service;
 
+import com.udemy.spring.petclinic.customUser.CustomUser;
 import com.udemy.spring.petclinic.model.Owner;
 import com.udemy.spring.petclinic.model.Person;
 import com.udemy.spring.petclinic.model.UserRole;
@@ -48,7 +49,7 @@ public class OwnerDetailsService implements UserDetailsService {
     }
 
     private UserDetails buildUserForAuthentication(Person person, Set<SimpleGrantedAuthority> userAuthority) {
-        return new org.springframework.security.core.userdetails.User(person.getFirstName(), person.getPassword(), true, true, true, true, userAuthority);
+        return new CustomUser(person.getId(), person.getFirstName(), person.getPassword(), true, true, true, true, userAuthority);
 
     }
 
