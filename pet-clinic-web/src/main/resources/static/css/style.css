@@ -5237,4 +5237,11 @@ body {
     margin: 100px auto;
 }
 
+.my-custom-scrollbar {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    overflow: auto;
+}
+
 /*# sourceMappingURL=../css/style.map */
