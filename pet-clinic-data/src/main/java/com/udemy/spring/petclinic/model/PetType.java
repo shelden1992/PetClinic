@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.StringJoiner;
 
 /**
  * Created by Shelupets Denys on 07.07.2020.
@@ -23,6 +24,11 @@ public class PetType extends BaseEntity {
     public PetType(Long id, String name) {
         super(id);
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
 
