@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringJoiner;
 
 /**
  * Created by Shelupets Denys on 07.07.2020.
@@ -12,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,6 +24,16 @@ public class Owner extends Person {
     private String telephone;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Pet> pets = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Owner.class.getSimpleName() + "[", "]")
+                .add("address='" + address + "'")
+                .add("telephone='" + telephone + "'")
+                .add("pets=" + pets)
+                .add("id=" + id)
+                .toString();
+    }
 
     public Owner(Long id, String firstName, String lastName, String email, String password, String address, String telephone, Set<Pet> pets) {
         super(id, firstName, lastName, email, password);

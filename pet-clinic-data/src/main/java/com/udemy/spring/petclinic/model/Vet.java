@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.StringJoiner;
 
 /**
  * Created by Shelupets Denys on 07.07.2020.
@@ -12,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -28,4 +28,13 @@ public class Vet extends Person {
     private Set<Visit> visits;
 
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Vet.class.getSimpleName() + "[", "]")
+                .add("specialities=" + specialities)
+                .add("workProcessing=" + workProcessing)
+                .add("visits=" + visits)
+                .add("id=" + id)
+                .toString();
+    }
 }

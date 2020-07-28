@@ -1,11 +1,14 @@
 package com.udemy.spring.petclinic.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.StringJoiner;
 
 /**
  * Created by Shelupets Denys on 07.07.2020.
@@ -13,16 +16,15 @@ import java.util.StringJoiner;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "type")
-public class PetType extends BaseEntity {
+public class PetType {
+    @Id
     @Column(name = "name")
     private String name;
 
-    public PetType(Long id, String name) {
-        super(id);
+    public PetType(String name) {
         this.name = name;
     }
 

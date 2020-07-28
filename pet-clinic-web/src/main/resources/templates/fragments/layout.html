@@ -32,7 +32,8 @@
         <div class="row align-items-center">
             <div class="col-4 col-md-4 col-xl-4">
                 <div id="logo">
-                    <a th:href="@{/home}"><img th:src="@{img/Logo.png}" alt="" title=""/></a>
+                    <a th:href="@{/home}"><img th:src="@{/img/logo.png}" src="../../static/img/logo.png" alt=""
+                    /></a>
                 </div>
             </div>
 
@@ -44,8 +45,8 @@
 
             <div class="col-auto">
                 <div th:if="${#httpServletRequest.remoteUser != null}">
-                        <a th:href="@{/owners/details} "><h3 th:inline="text">Hello
-                            [[${#httpServletRequest.remoteUser}]]!</h3></a>
+                    <a th:href="@{/owners/details} "><h3 th:inline="text">Hello
+                        [[${#httpServletRequest.remoteUser}]]!</h3></a>
                 </div>
             </div>
             <div class=" col-auto">
@@ -77,18 +78,14 @@
     <div th:insert="~{fragments/menu :: admin-menu}"></div>
 </div>
 <div class="container-fluid">
-
     <section th:include="${template}"/>
 
     <br/>
     <br/>
 </div>
-
-<!-- banner part start-->
-
 <footer class="footer_area padding_top">
     <div class="container">
-        <div class="row justify-content-center ">
+        <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-6">
                 <div class="subscribe_part_text text-center">
                     <h2>Subscribe Newsletter</h2>
@@ -176,8 +173,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
 </body>
 </html>

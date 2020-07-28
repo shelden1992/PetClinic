@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 /**
  * Created by Shelupets Denys on 08.07.2020.
@@ -12,7 +13,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,4 +29,13 @@ public class Visit extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "vet_id")
     private Vet vet;
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Visit.class.getSimpleName() + "[", "]")
+                .add("dateVisit=" + dateVisit)
+                .add("description='" + description + "'")
+                .add("id=" + id)
+                .toString();
+    }
 }

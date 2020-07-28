@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body})}">>
+<head>
+    <meta charset="UTF-8">
+    <title>Pets</title>
+</head>
+<body>
+<div class="container xd-container">
+    <br/>
+    <br/>
+    <h1>Pets</h1>
+    <br/>
+    <br/>
+    <table id="pets" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Name</th>
+            <th style="width: 200px;">BirthDate</th>
+            <th style="width: 100px;">Type</th>
+
+            <th style="width: 200px">Owner</th>
+        </tr>
+        </thead>
+        <tr th:each="pet : ${pets}">
+            <td th:text="${pet.name}"/>
+            <td th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${pet.petType.name}"/>
+            <td>
+                <a th:href="@{/owners/__${pet.owner.id}__}"
+                   th:text="${pet.owner.firstName + ' ' + pet.owner.lastName}"/></a>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>
