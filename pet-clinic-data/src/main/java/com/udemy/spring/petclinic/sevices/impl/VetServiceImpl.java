@@ -35,7 +35,7 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public Vet save(Vet object) {
+    public Vet saveOrUpdate(Vet object) {
         return repository.save(object);
     }
 

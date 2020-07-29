@@ -32,7 +32,7 @@ public class SpecialityServiceImpl implements SpecialityService {
     }
 
     @Override
-    public Speciality save(Speciality object) {
+    public Speciality saveOrUpdate(Speciality object) {
         return repository.save(object);
     }
 

@@ -13,30 +13,28 @@
                         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a th:href="@{/about}" class="nav-link">About</a>
+                                    <a th:href="@{/about}" class="nav-link" th:text="#{about}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/services}" class="nav-link">services</a>
+                                    <a th:href="@{/#}" class="nav-link" th:text="#{services}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/gallery}" class="nav-link">gallery</a>
+                                    <a th:href="@{/gallery}" class="nav-link" th:text="#{gallery}"></a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" th:href="@{elements.html}">Elements</a>
-                                        <a class="dropdown-item" th:href="@{single-blog.html}">Single blog</a>
-                                    </div>
+
+                                <li class="nav-item">
+                                    <a th:href="@{/blog}" class="nav-link" th:text="#{blog}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/blog}" class="nav-link">blog</a>
+                                    <a th:href="@{/specialists}" class="nav-link" th:text="#{specialists}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/contact}" class="nav-link">Contact</a>
+                                    <a th:href="@{/#}" class="nav-link" th:text="#{reviews}"></a>
                                 </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/#}" class="nav-link" th:text="#{contact}"></a>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>
@@ -61,16 +59,19 @@
                             <ul class="navbar-nav">
                                 <!--                            <div th:if="!${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">-->
                                 <li class="nav-item">
-                                    <a th:href="@{/owners}" class="nav-link">Owners</a>
+                                    <a th:href="@{/admin/owners}" class="nav-link" th:text="#{owners}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/owners/find}" class="nav-link">Find Owners</a>
+                                    <a th:href="@{/admin/owners/find}" class="nav-link" th:text="#{find.owner}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/pets}" class="nav-link">Pets</a>
+                                    <a th:href="@{/admin/pets}" class="nav-link" th:text="#{pets}"></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a th:href="@{/pets/find}" class="nav-link">Find Pets</a>
+                                    <a th:href="@{/admin/specialists/edit}" class="nav-link" th:text="#{specialists}"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a th:href="@{/admin/pets/find}" class="nav-link" th:text="#{find.pet}"></a>
                                 </li>
                             </ul>
                         </div>

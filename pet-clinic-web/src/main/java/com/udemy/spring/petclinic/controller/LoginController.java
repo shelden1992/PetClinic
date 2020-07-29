@@ -1,7 +1,6 @@
 package com.udemy.spring.petclinic.controller;
 
 import com.udemy.spring.petclinic.form.LoginForm;
-import com.udemy.spring.petclinic.model.Owner;
 import com.udemy.spring.petclinic.sevices.interfaces.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -39,7 +38,6 @@ public class LoginController {
         if (error.hasErrors()) {
             return "login";
         }
-
         return "redirect:/";
     }
 

@@ -30,7 +30,7 @@ public class Pet extends BaseEntity {
             name = "type_name",
             referencedColumnName = "name")
     private PetType petType;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private Owner owner;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pet")

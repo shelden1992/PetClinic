@@ -32,7 +32,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet save(Pet object) {
+    public Pet saveOrUpdate(Pet object) {
         return petRepository.save(object);
     }
 

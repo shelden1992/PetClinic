@@ -56,7 +56,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner save(Owner object) {
+    public Owner saveOrUpdate(Owner object) {
         return ownerRepository.save(object);
     }
 

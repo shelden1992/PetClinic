@@ -66,9 +66,8 @@ public class PetController {
     }
 
     @PostMapping("/owners/{ownerId}/pets/new")
-    public String createPet(@PathVariable("ownerId") Long id, @Valid Pet pet,BindingResult result, ModelMap model) {
+    public String createPet(@PathVariable("ownerId") Long id, @Valid Pet pet, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            model.put("owner", ownerService.findById(id));
             model.put("pet", pet);
             return "pet/createOrUpdatePetForm";
         }
@@ -78,36 +77,30 @@ public class PetController {
             return "pet/createOrUpdatePetForm";
         }
         owner.getPets().add(pet);
-        petService.save(pet);
+        pet.setOwner(owner);
+        ownerService.saveOrUpdate(owner);
         return "redirect:/owners/" + owner.getId();
     }
 
     @GetMapping("/owners/{ownerId}/pets/{petId}/edit")
-    public String initUpdateForm(@PathVariable("ownerId") Long id, @PathVariable Long petId, Model model) {
-        model.addAttribute("pet", petService.findById(petId));
+    public String initUpdateForm(@PathVariable("ownerId") Long id, @PathVariable Long petId, ModelMap model) {
+        model.put("pet", petService.findById(petId));
         return "pet/createOrUpdatePetForm";
     }
 
     @PostMapping("/owners/{ownerId}/pets/{petId}/edit")
-    public String processUpdateForm(@PathVariable("ownerId") Long id,@PathVariable("petId") Long petId, @Valid Pet pet,PetType type,BindingResult result, Model model) {
-        System.err.println(type   + "TYPE!!!!!!!!!!!!");
-        System.err.println(pet   + "PET!!!!!!!!!!!!");
+    public String processUpdateForm(@PathVariable("ownerId") Long id, @PathVariable("petId") Long petId, @Valid Pet pet, BindingResult result, Model model) {
         Owner owner = ownerService.findById(id);
         if (result.hasErrors()) {
             pet.setOwner(owner);
             model.addAttribute("pet", pet);
             return "pet/createOrUpdatePetForm";
         } else {
-            owner.getPets().add(pet);
-            petService.save(pet);
+            pet.setOwner(owner);
+            petService.saveOrUpdate(pet);
             return "redirect:/owners/" + owner.getId();
         }
     }
 
-    @GetMapping("/pets")
-    public String allPets(Model model) {
-        model.addAttribute("pets", petService.findAll());
-        return "pet/petsList";
-    }
 
 }

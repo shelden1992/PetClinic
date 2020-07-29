@@ -15,7 +15,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 text-center">
-                            <form th:action="@{/owners/new}" method="post" id="add-owner-form" class="bg-white p-4"
+                            <form th:action="@{/new}" method="post" id="add-owner-form" class="bg-white p-4"
                                   th:object="${owner}">
                                 <h2 th:with="text=${owner['new']} ? 'Registration' : 'Update Owner'"
                                     type="text"
